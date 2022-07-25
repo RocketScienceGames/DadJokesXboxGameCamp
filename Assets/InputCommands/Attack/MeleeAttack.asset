@@ -20,3 +20,11 @@ MonoBehaviour:
     _useConstant: 1
     ConstantValue: 1
     Variable: {fileID: 0}
+  attackVFX:
+    _useConstant: 1
+    ConstantValue: {fileID: 1040608886635896, guid: a97415c6b57076f41a6621a7b51d63a3, type: 3}
+    Variable: {fileID: 0}
+  impactVFX:
+    _useConstant: 1
+    ConstantValue: {fileID: 100000, guid: bc98890f6028f444eaa7789bde5e2eeb, type: 3}
+    Variable: {fileID: 0}

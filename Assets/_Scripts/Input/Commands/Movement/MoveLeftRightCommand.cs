@@ -26,7 +26,7 @@ public class MoveLeftRightCommand : CorruptedAxisCommand<RigidbodyMovement>, IFi
 
     public override void EndExecute(RigidbodyMovement t)
     {
-        t.AddForce(GetMoveVelocity(t) * -1f);
+        t.AddForce(GetMoveVelocity(t) * -1f, ForceMode.Impulse);
         t.drag = idleDrag;
     }
 

@@ -11,6 +11,9 @@ public class Health : MonoBehaviour
     public FloatVariable health;
     public FloatVariable maxHealth;
     public FloatVariable explosiveForceMultiplier = 1f;
+    public BoolVariable startFullHealth;
+
+    public IntVariable team;
 
     public UnityEvent OnTakeDamage, OnDeath;
 
@@ -19,6 +22,8 @@ public class Health : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        if (startFullHealth)
+            health = maxHealth;
     }
 
     public float TakeDamage(DamageInfo damgae)

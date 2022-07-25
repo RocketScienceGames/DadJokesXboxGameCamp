@@ -68,14 +68,14 @@ public class RigidbodyMovement : MonoBehaviour
         rb.useGravity = false;
     }
 
-    public void AddForce(Vector3 force)
+    public void AddForce(Vector3 force, ForceMode fm = ForceMode.Force)
     {
-        rb.AddForce(force);
+        rb.AddForce(force, fm);
     }
 
     public void Move(float acceleration)
     {
-        AddForce(movement * acceleration);
+        AddForce(movement * acceleration, ForceMode.Impulse);
     }
 
     private void FixedUpdate()
