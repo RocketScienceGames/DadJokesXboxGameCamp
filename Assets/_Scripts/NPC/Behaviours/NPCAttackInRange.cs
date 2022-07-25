@@ -19,6 +19,9 @@ public class NPCAttackInRange : NPCBehaviour
     CombatController combat;
     Coroutine coroutine;
 
+    bool isOnScreen = false;
+    bool isActive = false;
+
     private void Awake()
     {
         combat = GetComponent<CombatController>();
@@ -27,16 +30,31 @@ public class NPCAttackInRange : NPCBehaviour
 
     public override void OnEnd()
     {
-        if(coroutine!=null)StopCoroutine(coroutine);
+        StopSearch();
+        isActive = false;
     }
 
     public override void OnStart()
     {
-        coroutine = StartCoroutine(CheckForEnemy());
+        if(isOnScreen)
+            StartSearch();
+        isActive = true;
     }
 
     public override void OnUpdate()
     {
+    }
+
+    void StartSearch()
+    {
+        if (coroutine != null) return;
+        coroutine = StartCoroutine(CheckForEnemy());
+    }
+
+    void StopSearch()
+    {
+        if (coroutine != null) StopCoroutine(coroutine);
+        coroutine = null;
     }
 
     IEnumerator CheckForEnemy()
@@ -50,5 +68,19 @@ public class NPCAttackInRange : NPCBehaviour
                     agent.SetState(attackState);
             });
         }
+    }
+
+    private void OnBecameVisible()
+    {
+        isOnScreen = true;
+        if (isActive)
+            StartSearch();
+
+    }
+
+    private void OnBecameInvisible()
+    {
+        isOnScreen = false;
+        StopSearch();
     }
 }

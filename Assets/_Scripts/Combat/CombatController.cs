@@ -6,6 +6,10 @@ using Corrupted;
 public class CombatController : MonoBehaviour
 {
 
+    public static System.Action<CombatController> OnAttack;
+    public static System.Action<CombatController, Health> OnAttackHit;
+
+
     static List<DamageGizmo> gizmos = new List<DamageGizmo>();
 
     public Health[] AttackAtPointLocalSpace(Vector3 localPos, float radius, float damage, System.Action<Health> OnHit = null)
@@ -31,11 +35,13 @@ public class CombatController : MonoBehaviour
         //Health[] hits = pos.GetOverlapSphere<Health>(radius, layer);
         DamageInfo info = new DamageInfo { damage = damage, position = pos , source = source, radius = radius};
         gizmos.Add(new DamageGizmo(pos, radius, 3f, Color.blue, true));
+        OnAttack?.Invoke(source);
         return SurveyPointWorldSpace(pos, radius, (Health h)=>
         {
             h.TakeDamage(info);
             OnHit?.Invoke(h);
             gizmos.Add(new DamageGizmo(h.transform.position, 0.5f, 3f, Color.red));
+            OnAttackHit?.Invoke(source, h);
         });
     }
 
