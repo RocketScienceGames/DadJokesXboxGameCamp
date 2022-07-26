@@ -29,7 +29,7 @@ public class PlayerAnimator : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         anim.SetFloat("MoveSpeed", rigidbodyMovement.velocity.magnitude);
         anim.SetBool("IsGrounded", rigidbodyMovement.isGrounded);

@@ -19,7 +19,7 @@ public class NPCNavMeshMovement : NPCMovement
     {
         nav.enabled = true;
         if (nav.isOnNavMesh == false)
-            nav.ResetPath();
+            nav.enabled = false;
     }
 
     private void OnDisable()
