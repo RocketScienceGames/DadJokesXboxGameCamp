@@ -6,6 +6,7 @@ using Corrupted;
 [RequireComponent(typeof(CombatController))]
 public class PlayerAttackCommandListener : CorruptedCommandListener<CombatController>
 {
+
     public override CombatController GetReceiver()
     {
         return GetComponent<CombatController>();

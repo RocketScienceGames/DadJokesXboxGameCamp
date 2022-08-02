@@ -26,10 +26,11 @@ public class Health : MonoBehaviour
             health = maxHealth;
     }
 
-    public float TakeDamage(DamageInfo damgae)
+    public float TakeDamage(DamageInfo damage)
     {
-        health -= damgae.damage;
-        rb.AddExplosionForce(damgae.damage * explosiveForceMultiplier, damgae.position, damgae.radius);
+        //Debug.Log($"{gameObject.name}: {damage.damage} damage taken from {damage.source.name}");
+        health -= damage.damage;
+        rb.AddExplosionForce(damage.damage * explosiveForceMultiplier, damage.position, damage.radius);
         OnTakeDamage?.Invoke();
         if (health <= 0)
             Die();

@@ -14,7 +14,7 @@ public class VFXManager : Singleton<VFXManager>
     {
         foreach(VFXInstance vfx in activeVFX)
         {
-            vfx.Update();
+            vfx.Update(Time.deltaTime);
         }
     }
 
@@ -33,8 +33,11 @@ public class VFXManager : Singleton<VFXManager>
 
         vfx.OnDestroy += (VFXInstance vfx) =>
         {
+            //Debug.Log($"VFXManager: Active VFX {prefab.name} has exceeded its lifespan and was destroyed.");
             StartCoroutine(RemoveActiveVFX(vfx));
         };
+
+        activeVFX.Add(vfx);
     }
 
 
@@ -58,22 +61,24 @@ public class VFXManager : Singleton<VFXManager>
 }
 
 [System.Serializable]
-public struct VFXInstance
+public class VFXInstance
 {
     public GameObject gameObject;
     public Transform parent;
     public Vector3? position;
     public Vector3? rotation;
     public float lifespan;
+    private float timeElapsed;
     public System.Action<VFXInstance> OnUpdate;
     public System.Action<VFXInstance> OnDestroy;
 
 
-    public void Update()
+    public void Update(float deltaTime)
     {
         OnUpdate?.Invoke(this);
-        lifespan -= Time.deltaTime;
-        if (lifespan <= 0)
+        timeElapsed += deltaTime;
+        //Debug.Log($"VFXManager: Update {gameObject.name}, lifespan remaining {lifespan - timeElapsed}", gameObject);
+        if (timeElapsed > lifespan)
             OnDestroy?.Invoke(this);
     }
 }

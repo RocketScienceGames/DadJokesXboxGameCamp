@@ -160,11 +160,10 @@
       }
     },
     "corruptedmedia.corruptedcore": {
-      "version": "https://github.com/SeantheBomb/CorruptedCore.git",
+      "version": "file:C:/Users/SeanF/Documents/CorruptedCore",
       "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "f47930af9e8b9971f0b2ef0093c940f0fc550f85"
+      "source": "local",
+      "dependencies": {}
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

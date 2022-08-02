@@ -293,6 +293,7 @@ GameObject:
   - component: {fileID: 6733705415904873888}
   - component: {fileID: 5412186630411768490}
   - component: {fileID: 4141573316753904093}
+  - component: {fileID: 1869547352910119972}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -412,7 +413,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -513,9 +514,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   staggerDelay:
+    _useConstant: 0
+    ConstantValue: 3
+    Variable: {fileID: 11400000, guid: 961349aaf7371324bb4fea631b90a2b7, type: 2}
+--- !u!114 &1869547352910119972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4025804210931667428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a9eb1519b921934f820824c89485134, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab:
     _useConstant: 1
-    ConstantValue: 2
+    ConstantValue: {fileID: 1247311384876784, guid: 4adffb0018aeda44e9263f901167af1f, type: 3}
     Variable: {fileID: 0}
+  lifespan: 3
 --- !u!1 &4025804211363662636
 GameObject:
   m_ObjectHideFlags: 0
