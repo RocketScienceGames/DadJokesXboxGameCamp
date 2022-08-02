@@ -2,10 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Corrupted;
+using System;
 
 [RequireComponent(typeof(CombatController))]
 public class PlayerAttackCommandListener : CorruptedCommandListener<CombatController>
 {
+
+    protected override void Start()
+    {
+        base.Start();
+        OnCommandEnd += StartCooldown;
+    }
 
     public override CombatController GetReceiver()
     {
@@ -25,6 +32,21 @@ public class PlayerAttackCommandListener : CorruptedCommandListener<CombatContro
             if (cl.command is IFixedUpdateListener<CombatController>)
                 (cl.command as IFixedUpdateListener<CombatController>).OnFixedUpdate(receiver);
         }
+    }
+
+    private void StartCooldown(CorruptedCommand<CombatController> obj)
+    {
+        CommandListener listener = GetCommandListener(obj);
+        AttackCommand command = obj as AttackCommand;
+        if (listener.isValid)
+            StartCoroutine(CooldownCR(listener, command.cooldown));
+
+    }
+
+    IEnumerator CooldownCR(CommandListener listener, float cooldown) {
+        listener.isValid = false;
+        yield return new WaitForSeconds(cooldown);
+        listener.isValid = true;
     }
 }
 

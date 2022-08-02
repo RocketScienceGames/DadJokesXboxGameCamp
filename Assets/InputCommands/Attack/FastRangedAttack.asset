@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8813caf088957b244a30c63c4e0f14e2, type: 3}
   m_Name: FastRangedAttack
   m_EditorClassIdentifier: 
+  cooldown:
+    _useConstant: 1
+    ConstantValue: 0.2
+    Variable: {fileID: 0}
   range:
     _useConstant: 1
     ConstantValue: 10

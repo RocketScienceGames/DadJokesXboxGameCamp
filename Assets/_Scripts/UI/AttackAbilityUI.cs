@@ -9,9 +9,12 @@ public class AttackAbilityUI : MonoBehaviour
 {
 
     public PlayerAttackCommandListener listener;
-    public CorruptedCommand<CombatController> attack;
+    public AttackCommand attack;
 
     public Image view;
+
+    [Range(0f,1f)]
+    public float fillAmount;
 
     public bool inCooldown = false;
 
@@ -39,20 +42,24 @@ public class AttackAbilityUI : MonoBehaviour
     {
         if (inCooldown)
             return;
+        AttackCommand ac = obj as AttackCommand;
         if(obj == attack)
-            StartCoroutine(UICooldown(1f, 0.1f));
+            StartCoroutine(UICooldown(ac.cooldown, 0.01f));
     }
 
     IEnumerator UICooldown(float cooldownTime, float stepRate)
     {
         inCooldown = true;
         float timer = cooldownTime;
+        view.fillAmount = 0;
         while(timer > 0)
         {
+            fillAmount = (cooldownTime - timer) / cooldownTime;
+            view.fillAmount = fillAmount;
             timer -= stepRate;
-            view.fillAmount = cooldownTime - (timer / cooldownTime);
             yield return new WaitForSeconds(stepRate);
         }
+        view.fillAmount = 1;
         inCooldown = false;
     }
 

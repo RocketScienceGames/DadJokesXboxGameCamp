@@ -5,7 +5,7 @@ using Corrupted;
 
 
 [CreateAssetMenu(fileName = "MeleeAttack", menuName = "DadJokes/Input/Melee")]
-public class MeleeAttackCommand : CorruptedCommand<CombatController>
+public class MeleeAttackCommand : AttackCommand
 {
     [Header("Stats")]
     public FloatVariable range;
