@@ -19,8 +19,8 @@ public class NPCAttackInRange : NPCBehaviour
     CombatController combat;
     Coroutine coroutine;
 
-    bool isOnScreen = false;
-    bool isActive = false;
+    public bool isOnScreen = false;
+    public bool isActive = false;
 
     private void Awake()
     {
@@ -36,8 +36,8 @@ public class NPCAttackInRange : NPCBehaviour
 
     public override void OnStart()
     {
-        if(isOnScreen)
-            StartSearch();
+        //if(isOnScreen)
+        StartSearch();
         isActive = true;
     }
 
@@ -64,23 +64,26 @@ public class NPCAttackInRange : NPCBehaviour
             yield return new WaitForSeconds(frequency);
             combat.SurveyPointLocalSpace(Vector3.zero, radius, (Health h) =>
             {
-                if(h.team != agent.team)
+                if (h.team.Value != agent.team.Value)
+                {
                     agent.SetState(attackState);
+                    agent.target = h.transform;
+                }
             });
         }
     }
 
-    private void OnBecameVisible()
-    {
-        isOnScreen = true;
-        if (isActive)
-            StartSearch();
+    //private void OnBecameVisible()
+    //{
+    //    isOnScreen = true;
+    //    if (isActive)
+    //        StartSearch();
 
-    }
+    //}
 
-    private void OnBecameInvisible()
-    {
-        isOnScreen = false;
-        StopSearch();
-    }
+    //private void OnBecameInvisible()
+    //{
+    //    isOnScreen = false;
+    //    StopSearch();
+    //}
 }

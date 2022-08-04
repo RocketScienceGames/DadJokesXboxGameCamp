@@ -34,6 +34,13 @@ public class NPCNavMeshMovement : NPCMovement
 
     public override bool ExecuteMove(Vector3 destination)
     {
+        nav.enabled = true;
         return nav.SetDestination(destination);
+    }
+
+    public override void StopMovement(bool cancelRequests = true)
+    {
+        base.StopMovement(cancelRequests);
+        nav.enabled = false;
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Corrupted;
 
+[RequireComponent(typeof(Health))]
 public class CombatController : MonoBehaviour
 {
 
@@ -11,6 +12,18 @@ public class CombatController : MonoBehaviour
 
 
     static List<DamageGizmo> gizmos = new List<DamageGizmo>();
+
+    public int team => health.team;
+
+    public Health health
+    {
+        get; protected set;
+    }
+
+    private void Awake()
+    {
+        health = GetComponent<Health>();
+    }
 
     #region SphereCast
 
@@ -40,6 +53,8 @@ public class CombatController : MonoBehaviour
         OnAttack?.Invoke(source);
         return SurveyDirectionWorldSpace(pos, direction, radius, distance, (RayHit<Health> h) =>
         {
+            if (source.team == h.value.team.Value)
+                return;
             info.position = h.hit.point;
             h.value.TakeDamage(info);
             OnHit?.Invoke(h);
@@ -101,6 +116,9 @@ public class CombatController : MonoBehaviour
         OnAttack?.Invoke(source);
         return SurveyPointWorldSpace(pos, radius, (Health h)=>
         {
+            if (source.team == h.team.Value)
+                return;
+            Debug.Log($"CombatController: Attack from {source.name} hit {h.transform.name}", h.transform);
             h.TakeDamage(info);
             OnHit?.Invoke(h);
             gizmos.Add(new DamageGizmo(h.transform.position, 0.5f, 3f, Color.red));

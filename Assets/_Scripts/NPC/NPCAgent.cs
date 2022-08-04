@@ -8,6 +8,8 @@ public class NPCAgent : MonoBehaviour
 
     public NPCState currentState;
 
+    public Transform target;
+
     public IntVariable team;
 
     public System.Action<NPCState> OnUpdate, OnStart, OnEnd;
