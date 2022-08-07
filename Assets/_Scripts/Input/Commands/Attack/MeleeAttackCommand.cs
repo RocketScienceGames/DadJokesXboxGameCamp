@@ -15,6 +15,8 @@ public class MeleeAttackCommand : AttackCommand
     public GameObjectVariable attackVFX;
     public GameObjectVariable impactVFX;
 
+    public override float Damage => damage;
+
     public override void EndExecute(CombatController t)
     {
         
@@ -27,6 +29,7 @@ public class MeleeAttackCommand : AttackCommand
         {
             VFXManager.Spawn(impactVFX, 1f, h.transform);
         });
+        StopCommand(t);
     }
 
     public override void WhileExecute(CombatController t)

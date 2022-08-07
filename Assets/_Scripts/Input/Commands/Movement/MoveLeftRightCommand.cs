@@ -14,25 +14,25 @@ public class MoveLeftRightCommand : CorruptedAxisCommand<RigidbodyMovement>, IFi
     public FloatVariable moveAcceleration;
     public FloatVariable maxSpeed;
 
-    [Header("Settings")]
-    public FloatVariable idleDrag;
-    public FloatVariable activeDrag;
+    //[Header("Settings")]
+    //public FloatVariable idleDrag;
+    //public FloatVariable activeDrag;
 
 
     public override void OnStart(RigidbodyMovement t)
     {
-        t.drag = idleDrag;
+        //t.drag = idleDrag;
     }
 
     public override void EndExecute(RigidbodyMovement t)
     {
-        t.AddForce(GetMoveVelocity(t) * -1f, ForceMode.Impulse);
-        t.drag = idleDrag;
+        //t.AddForce(GetMoveVelocity(t) * -1f, ForceMode.Impulse);
+        //t.drag = idleDrag;
     }
 
     public override void StartExecute(RigidbodyMovement t)
     {
-        t.drag = activeDrag;
+        //t.drag = activeDrag;
     }
 
     public override void WhileExecute(RigidbodyMovement t, float axis)
@@ -42,8 +42,8 @@ public class MoveLeftRightCommand : CorruptedAxisCommand<RigidbodyMovement>, IFi
 
     public void OnFixedUpdate(RigidbodyMovement t)
     {
-        t.Move(moveAcceleration);
-        ClampMoveVelocity(t, maxSpeed);
+        //t.Move(moveAcceleration);
+        //ClampMoveVelocity(t, maxSpeed);
     }
 
     public Vector3 GetMoveVelocity(RigidbodyMovement t)

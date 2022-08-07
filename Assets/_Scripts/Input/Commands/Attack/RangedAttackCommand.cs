@@ -16,6 +16,8 @@ public class RangedAttackCommand : AttackCommand
     public GameObjectVariable attackVFX;
     public GameObjectVariable impactVFX;
 
+    public override float Damage => damage;
+
     public override void EndExecute(CombatController t)
     {
         
@@ -28,6 +30,7 @@ public class RangedAttackCommand : AttackCommand
         {
             VFXManager.Spawn(impactVFX, 2f, h.transform);
         });
+        StopCommand(t);
     }
 
     public override void WhileExecute(CombatController t)

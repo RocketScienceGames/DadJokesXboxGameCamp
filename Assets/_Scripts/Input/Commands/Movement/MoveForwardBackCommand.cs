@@ -15,25 +15,25 @@ public class MoveForwardBackCommand : CorruptedAxisCommand<RigidbodyMovement>, I
     public FloatVariable depthBoundary;
     public FloatVariable maxSpeed;
 
-    [Header("Settings")]
-    public FloatVariable idleDrag;
-    public FloatVariable activeDrag;
+    //[Header("Settings")]
+    //public FloatVariable idleDrag;
+    //public FloatVariable activeDrag;
 
 
     public override void OnStart(RigidbodyMovement t)
     {
-        t.drag = idleDrag;
+        //t.drag = idleDrag;
     }
 
     public override void EndExecute(RigidbodyMovement t)
     {
-        t.AddForce(GetMoveVelocity(t) * -1f);
-        t.drag = idleDrag;
+        //t.AddForce(GetMoveVelocity(t) * -1f);
+        //t.drag = idleDrag;
     }
 
     public override void StartExecute(RigidbodyMovement t)
     {
-        t.drag = activeDrag;
+        //t.drag = activeDrag;
     }
 
     public override void WhileExecute(RigidbodyMovement t, float axis)
@@ -43,8 +43,8 @@ public class MoveForwardBackCommand : CorruptedAxisCommand<RigidbodyMovement>, I
 
     public void OnFixedUpdate(RigidbodyMovement t)
     {
-        t.Move(moveAcceleration);
-        ClampMoveVelocity(t, maxSpeed);
+        //t.Move(moveAcceleration);
+        //ClampMoveVelocity(t, maxSpeed);
         ClampPosition(t, depthBoundary);
     }
 
@@ -71,8 +71,8 @@ public class MoveForwardBackCommand : CorruptedAxisCommand<RigidbodyMovement>, I
         {
             pos.z = Mathf.Sign(pos.z) * depth;
             t.position = pos;
-            if (Mathf.Sign(t.velocity.z) == Mathf.Sign(pos.z))
-                t.velocity = new Vector3(t.velocity.x, t.velocity.y, 0);
+            if (Mathf.Sign(t.movement.z) == Mathf.Sign(pos.z))
+                t.movement = new Vector3(t.movement.x, t.movement.y, -t.movement.z);
         }
         return pos;
     }

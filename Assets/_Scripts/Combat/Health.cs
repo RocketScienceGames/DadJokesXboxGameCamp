@@ -13,6 +13,8 @@ public class Health : MonoBehaviour
     public FloatVariable explosiveForceMultiplier = 1f;
     public BoolVariable startFullHealth;
 
+    public FloatVariable DestroyOnDeathDelay = -1;
+
     public IntVariable team;
 
     public UnityEvent OnTakeDamage, OnDeath;
@@ -40,6 +42,10 @@ public class Health : MonoBehaviour
     public void Die()
     {
         OnDeath?.Invoke();
+        if(DestroyOnDeathDelay > 0)
+        {
+            Destroy(gameObject, DestroyOnDeathDelay);
+        }
     }
 
 

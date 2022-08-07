@@ -12,19 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc41c0129ccec0e499abea402ef8f733, type: 3}
   m_Name: Jump Command
   m_EditorClassIdentifier: 
-  direction: {x: 0, y: 1, z: 0}
-  force:
-    _useConstant: 0
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: a68caf2b2a118a3469263f76c645aad0, type: 2}
-  fallMulitplier:
-    _useConstant: 0
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: 0f53e4440674cf246b61aa245e942ea0, type: 2}
-  airDrag:
-    _useConstant: 0
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: e7b33f3726d1f78468e17fcb7cd1018f, type: 2}
+  maxJumpHeight: 4
+  maxJumpTime: 0.75
+  fallMultiplier: 4
+  RideHeight: 0.1
+  RideSpringStrength: 1
+  RideSpringDamper: 1
   groundLayer:
     serializedVersion: 2
     m_Bits: 8

@@ -18,7 +18,7 @@ public class VFXManager : Singleton<VFXManager>
         }
     }
 
-    public void SpawnVFX(GameObject prefab, float lifespan, Transform parent = null, Vector3? position = null, Quaternion? rotation = null, System.Action<VFXInstance> OnUpdate = null, System.Action<VFXInstance> OnDestroy = null)
+    public VFXInstance SpawnVFX(GameObject prefab, float lifespan, Transform parent = null, Vector3? position = null, Quaternion? rotation = null, System.Action<VFXInstance> OnUpdate = null, System.Action<VFXInstance> OnDestroy = null)
     {
         VFXInstance vfx = new VFXInstance();
         vfx.lifespan = lifespan;
@@ -34,28 +34,46 @@ public class VFXManager : Singleton<VFXManager>
         vfx.OnDestroy += (VFXInstance vfx) =>
         {
             //Debug.Log($"VFXManager: Active VFX {prefab.name} has exceeded its lifespan and was destroyed.");
-            StartCoroutine(RemoveActiveVFX(vfx));
+            RemoveVFX(vfx);
         };
 
         activeVFX.Add(vfx);
+        return vfx;
+    }
+
+    public void RemoveVFX(VFXInstance instance)
+    {
+        StartCoroutine(RemoveActiveVFX(instance));
     }
 
 
     IEnumerator RemoveActiveVFX(VFXInstance vfx)
     {
+        if (vfx.gameObject == null || activeVFX.Contains(vfx) == false)
+            yield break;
         Destroy(vfx.gameObject);
         yield return null;
         activeVFX.Remove(vfx);
     }
 
-    public static void Spawn(GameObject prefab, float lifespan, Transform parent = null, Vector3? position = null, Quaternion? rotation = null, System.Action<VFXInstance> OnUpdate = null, System.Action<VFXInstance> OnDestroy = null)
+    public static VFXInstance Spawn(GameObject prefab, float lifespan, Transform parent = null, Vector3? position = null, Quaternion? rotation = null, System.Action<VFXInstance> OnUpdate = null, System.Action<VFXInstance> OnDestroy = null)
     {
         if(Instance == null)
         {
             Debug.LogError("VFXManager: Failed to spawn vfx because manager is not instantiated!");
+            return null;
+        }
+        return Instance.SpawnVFX(prefab, lifespan, parent, position, rotation, OnUpdate, OnDestroy);
+    }
+
+    public static void Remove(VFXInstance instance)
+    {
+        if (Instance == null)
+        {
+            Debug.LogError("VFXManager: Failed to remove vfx because manager is not instantiated!");
             return;
         }
-        Instance.SpawnVFX(prefab, lifespan, parent, position, rotation, OnUpdate, OnDestroy);
+        Instance.RemoveVFX(instance);
     }
 
 }
@@ -68,7 +86,7 @@ public class VFXInstance
     public Vector3? position;
     public Vector3? rotation;
     public float lifespan;
-    private float timeElapsed;
+    public float timeElapsed { get; protected set; }
     public System.Action<VFXInstance> OnUpdate;
     public System.Action<VFXInstance> OnDestroy;
 

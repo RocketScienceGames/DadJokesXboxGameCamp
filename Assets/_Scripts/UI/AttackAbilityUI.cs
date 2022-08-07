@@ -22,30 +22,33 @@ public class AttackAbilityUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        listener.OnCommandStart += OnAttackStart;
+        //listener.OnCommandStart += OnAttackStart;
         listener.OnCommandEnd += OnAttackEnd;
 
     }
 
     private void OnDestroy()
     {
-        listener.OnCommandStart -= OnAttackStart;
+        //listener.OnCommandStart -= OnAttackStart;
         listener.OnCommandEnd -= OnAttackEnd;
     }
 
     private void OnAttackEnd(CorruptedCommand<CombatController> obj)
     {
-        //throw new NotImplementedException();
-    }
-
-    private void OnAttackStart(CorruptedCommand<CombatController> obj)
-    {
         if (inCooldown)
             return;
         AttackCommand ac = obj as AttackCommand;
-        if(obj == attack)
+        if (obj == attack)
             StartCoroutine(UICooldown(ac.cooldown, 0.01f));
+        //throw new NotImplementedException();
     }
+
+    public void SetFillAmount(float fillAmount)
+    {
+        this.fillAmount = fillAmount;
+        view.fillAmount = fillAmount;
+    }
+
 
     IEnumerator UICooldown(float cooldownTime, float stepRate)
     {
