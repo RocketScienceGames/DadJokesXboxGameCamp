@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Corrupted.CorruptedCommandListener<CombatController>;
 
 [RequireComponent(typeof(CombatController))]
 [RequireComponent(typeof(RigidbodyMovement))]
@@ -18,14 +19,16 @@ public class PlayerAnimator : MonoBehaviour
     {
         combatController = GetComponent<CombatController>();
         rigidbodyMovement = GetComponent<RigidbodyMovement>();
-        CombatController.OnAttack += OnAttack;
+        PlayerAttackCommandListener.OnCommandListenerStart += OnAttack;
+        //CombatController.OnAttack += OnAttack;
     }
 
    
 
     private void OnDestroy()
     {
-        CombatController.OnAttack -= OnAttack;
+        //CombatController.OnAttack -= OnAttack;
+        PlayerAttackCommandListener.OnCommandListenerStart -= OnAttack;
     }
 
     // Update is called once per frame
@@ -35,9 +38,9 @@ public class PlayerAnimator : MonoBehaviour
         anim.SetBool("IsGrounded", rigidbodyMovement.isGrounded);
     }
 
-    private void OnAttack(CombatController obj)
+    private void OnAttack(CombatController obj, CommandListener cl)
     {
         if (obj == combatController)
-            anim.SetTrigger("LightAttack");
+            anim.SetTrigger(cl.name);
     }
 }

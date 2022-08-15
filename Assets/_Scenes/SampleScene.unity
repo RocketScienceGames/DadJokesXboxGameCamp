@@ -5386,9 +5386,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3123340006855335737, guid: eb7ced2033f59d84bb9b2aeaca468943, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.08110577
+      objectReference: {fileID: 0}
     - target: {fileID: 3123340008100465442, guid: eb7ced2033f59d84bb9b2aeaca468943, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3123340008100465464, guid: eb7ced2033f59d84bb9b2aeaca468943, type: 3}
+      propertyPath: buttons.Array.data[0].input
+      value: 106
+      objectReference: {fileID: 0}
+    - target: {fileID: 3123340008100465464, guid: eb7ced2033f59d84bb9b2aeaca468943, type: 3}
+      propertyPath: buttons.Array.data[1].input
+      value: 107
+      objectReference: {fileID: 0}
+    - target: {fileID: 3123340008100465464, guid: eb7ced2033f59d84bb9b2aeaca468943, type: 3}
+      propertyPath: buttons.Array.data[2].input
+      value: 108
+      objectReference: {fileID: 0}
+    - target: {fileID: 3123340008100465464, guid: eb7ced2033f59d84bb9b2aeaca468943, type: 3}
+      propertyPath: buttons.Array.data[3].input
+      value: 101
+      objectReference: {fileID: 0}
+    - target: {fileID: 3123340008100465464, guid: eb7ced2033f59d84bb9b2aeaca468943, type: 3}
+      propertyPath: buttons.Array.data[4].input
+      value: 102
       objectReference: {fileID: 0}
     - target: {fileID: 3123340008100465471, guid: eb7ced2033f59d84bb9b2aeaca468943, type: 3}
       propertyPath: m_RootOrder
