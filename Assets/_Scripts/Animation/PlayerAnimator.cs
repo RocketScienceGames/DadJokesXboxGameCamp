@@ -38,6 +38,6 @@ public class PlayerAnimator : MonoBehaviour
     private void OnAttack(CombatController obj)
     {
         if (obj == combatController)
-            anim.SetTrigger("Attack");
+            anim.SetTrigger("LightAttack");
     }
 }
