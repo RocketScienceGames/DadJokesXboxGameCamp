@@ -16,9 +16,10 @@ MonoBehaviour:
     _useConstant: 1
     ConstantValue: 0.1
     Variable: {fileID: 0}
+  uiElement: {fileID: 0}
   range:
     _useConstant: 1
-    ConstantValue: 3
+    ConstantValue: 2
     Variable: {fileID: 0}
   damage:
     _useConstant: 1

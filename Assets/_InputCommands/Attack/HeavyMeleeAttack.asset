@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown:
     _useConstant: 1
-    ConstantValue: 1
+    ConstantValue: 1.5
     Variable: {fileID: 0}
+  uiElement: {fileID: 0}
   range:
     _useConstant: 1
-    ConstantValue: 2
+    ConstantValue: 4
     Variable: {fileID: 0}
   damage:
     _useConstant: 1

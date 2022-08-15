@@ -368,6 +368,10 @@ MonoBehaviour:
     _useConstant: 1
     ConstantValue: 1
     Variable: {fileID: 0}
+  DestroyOnDeathDelay:
+    _useConstant: 1
+    ConstantValue: -1
+    Variable: {fileID: 0}
   team:
     _useConstant: 1
     ConstantValue: 1
@@ -637,8 +641,8 @@ MonoBehaviour:
   - name: Shoot
     command: {fileID: 11400000, guid: 39350c795ad144e4f8bf0ba020089707, type: 2}
     frequency:
-      minValue: 3.443483
-      maxValue: 11.195665
+      minValue: 1.567115
+      maxValue: 3.6901922
     duration:
       minValue: 0.20848536
       maxValue: 0.20848536

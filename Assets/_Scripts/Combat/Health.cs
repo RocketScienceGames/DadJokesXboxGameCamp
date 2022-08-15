@@ -25,13 +25,13 @@ public class Health : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         if (startFullHealth)
-            health = maxHealth;
+            health.Value = maxHealth;
     }
 
     public float TakeDamage(DamageInfo damage)
     {
         //Debug.Log($"{gameObject.name}: {damage.damage} damage taken from {damage.source.name}");
-        health -= damage.damage;
+        health.Value -= damage.damage;
         rb.AddExplosionForce(damage.damage * explosiveForceMultiplier, damage.position, damage.radius);
         OnTakeDamage?.Invoke();
         if (health <= 0)
