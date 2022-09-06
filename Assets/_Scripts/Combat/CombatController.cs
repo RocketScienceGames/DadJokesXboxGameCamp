@@ -20,9 +20,15 @@ public class CombatController : MonoBehaviour
         get; protected set;
     }
 
+    public Rigidbody rigidbody
+    {
+        get; protected set;
+    }
+
     private void Awake()
     {
         health = GetComponent<Health>();
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     #region SphereCast
@@ -150,6 +156,41 @@ public class CombatController : MonoBehaviour
 
     #endregion
 
+
+    #region LinearProjectile
+
+    public RayHit<Health>[] AttackLinearProjectileSelfLocalSpace(Vector3 localPos, Vector3 direction, float radius, float distance, float damage, System.Action<RayHit<Health>> OnHit = null)
+    {
+        Vector3 worldPos = transform.localToWorldMatrix.MultiplyPoint(localPos);
+        return AttackLinearProjectileWorldSpace(rigidbody, worldPos, direction, radius, distance, damage, this, OnHit);
+    }
+
+    public RayHit<Health>[] AttackLinearProjectileLocalSpace(Rigidbody projectile, Vector3 localPos, Vector3 direction, float radius, float distance, float damage, System.Action<RayHit<Health>> OnHit = null)
+    {
+        Vector3 worldPos = transform.localToWorldMatrix.MultiplyPoint(localPos);
+        return AttackLinearProjectileWorldSpace(projectile, worldPos, direction, radius, distance, damage, this, OnHit);
+    }
+
+    public static RayHit<Health>[] AttackLinearProjectileWorldSpace(Rigidbody projectile, Vector3 pos, Vector3 direction, float radius, float distance, float damage, CombatController source, System.Action<RayHit<Health>> OnHit = null)
+    {
+        //Health[] hits = pos.GetOverlapSphere<Health>(radius, layer);
+        DamageInfo info = new DamageInfo { damage = damage, position = pos, source = source, radius = radius };
+        gizmos.Add(new DamageGizmo(pos, radius, 3f, Color.blue, true));
+        OnAttack?.Invoke(source);
+        projectile.AddForce(direction * distance, ForceMode.VelocityChange);
+        return SurveyDirectionWorldSpace(pos, direction, radius, distance, (RayHit<Health> h) =>
+        {
+            if (source.team == h.value.team.Value)
+                return;
+            info.position = h.hit.point;
+            h.value.TakeDamage(info);
+            OnHit?.Invoke(h);
+            gizmos.Add(new DamageGizmo(h.value.transform.position, 0.5f, 3f, Color.red));
+            OnAttackHit?.Invoke(source, h);
+        });
+    }
+
+    #endregion
 
     private void OnDrawGizmosSelected()
     {

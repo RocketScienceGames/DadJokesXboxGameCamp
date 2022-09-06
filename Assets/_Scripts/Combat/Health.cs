@@ -19,7 +19,10 @@ public class Health : MonoBehaviour
 
     public UnityEvent OnTakeDamage, OnDeath;
 
-    Rigidbody rb;
+    public Rigidbody rb
+    {
+        get; protected set;
+    }
 
     private void Start()
     {
