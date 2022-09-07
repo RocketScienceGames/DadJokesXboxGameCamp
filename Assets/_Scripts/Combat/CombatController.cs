@@ -177,7 +177,7 @@ public class CombatController : MonoBehaviour
         DamageInfo info = new DamageInfo { damage = damage, position = pos, source = source, radius = radius };
         gizmos.Add(new DamageGizmo(pos, radius, 3f, Color.blue, true));
         OnAttack?.Invoke(source);
-        projectile.AddForce(direction * distance, ForceMode.VelocityChange);
+        projectile.transform.position += (direction.normalized * distance) + (Vector3.up * 0.1f);
         return SurveyDirectionWorldSpace(pos, direction, radius, distance, (RayHit<Health> h) =>
         {
             if (source.team == h.value.team.Value)

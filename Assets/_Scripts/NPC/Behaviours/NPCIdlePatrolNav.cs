@@ -14,7 +14,7 @@ public class NPCIdlePatrolNav : NPCBehaviour
 
     NPCNavMeshMovement npcMovement;
 
-    private void Start()
+    private void Awake()
     {
         npcMovement = GetComponent<NPCNavMeshMovement>();
     }

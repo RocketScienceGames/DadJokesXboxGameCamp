@@ -159,7 +159,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3123340006855335740}
   m_LocalRotation: {x: 0.2164396, y: -0, z: -0, w: 0.97629607}
-  m_LocalPosition: {x: -0.0724588, y: 8.991421, z: -12.357901}
+  m_LocalPosition: {x: -0.090272784, y: 8.991421, z: -12.357901}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -281,7 +281,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.6024442, y: 1}
+    m_SensorSize: {x: 1.9964055, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -318,6 +318,7 @@ GameObject:
   - component: {fileID: 3123340008100465464}
   - component: {fileID: 1722221676}
   - component: {fileID: 4119620125037735963}
+  - component: {fileID: 8253858214044518019}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -469,24 +470,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttons:
   - name: Light Attack
-    input: 104
+    input: 106
     command: {fileID: 11400000, guid: 42ef538b48b2ebc48a7edba98b0abaf2, type: 2}
     isValid: 1
   - name: Heavy Attack
-    input: 106
+    input: 107
     command: {fileID: 11400000, guid: 55c55a62af70e484a8a56e3de8a21573, type: 2}
     isValid: 1
   - name: Punchline 1
-    input: 107
-    command: {fileID: 11400000, guid: 7c0acdd957b8858418affe9e743cc9a9, type: 2}
+    input: 113
+    command: {fileID: 11400000, guid: 54f414d923d83944a84e1e849c8d88ec, type: 2}
     isValid: 1
   - name: Punchline 2
-    input: 107
-    command: {fileID: 11400000, guid: 7c0acdd957b8858418affe9e743cc9a9, type: 2}
+    input: 101
+    command: {fileID: 11400000, guid: 5902910fee3101441b31b7d8344cbaa8, type: 2}
     isValid: 1
   - name: Punchline 3
-    input: 107
-    command: {fileID: 11400000, guid: 7c0acdd957b8858418affe9e743cc9a9, type: 2}
+    input: 102
+    command: {fileID: 11400000, guid: bdf26589e7a3b5243b107fd03186c462, type: 2}
     isValid: 1
   axes: []
 --- !u!114 &1722221676
@@ -544,6 +545,18 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8253858214044518019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3123340008100465442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca05b07b789773c4d9c0bded36b172dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3123340008165376441
 GameObject:
   m_ObjectHideFlags: 0
