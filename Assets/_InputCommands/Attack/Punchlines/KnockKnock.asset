@@ -27,7 +27,11 @@ MonoBehaviour:
     Variable: {fileID: 0}
   damage:
     _useConstant: 1
-    ConstantValue: 4
+    ConstantValue: 2
+    Variable: {fileID: 0}
+  delayImpact:
+    _useConstant: 1
+    ConstantValue: 2
     Variable: {fileID: 0}
   attackVFX:
     _useConstant: 1

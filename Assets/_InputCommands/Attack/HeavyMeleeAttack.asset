@@ -25,6 +25,10 @@ MonoBehaviour:
     _useConstant: 1
     ConstantValue: 4
     Variable: {fileID: 0}
+  delayImpact:
+    _useConstant: 1
+    ConstantValue: 1
+    Variable: {fileID: 0}
   attackVFX:
     _useConstant: 1
     ConstantValue: {fileID: 100004, guid: fb7b0526ade434043b350a180d741cf3, type: 3}
